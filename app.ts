@@ -23,13 +23,13 @@ async function connect() {
                                 body: JSON.stringify(parsedContent),
                             };
                             console.log(parsedContent);
-                            /* fetch("http://localhost:8000/payment", body)
+                            fetch("http://44.219.166.176:8000/payment", body)
                                 .then(() => {
                                     console.log("datos enviados");
                                 })
                                 .catch((err: any) => {
                                     throw new Error(err);
-                                }); */
+                                }); 
                             await channel.ack(data);
                         }
                     });
