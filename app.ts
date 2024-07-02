@@ -7,7 +7,7 @@ async function connect() {
         const channel = await connection.createChannel();
 
         // Declaramos la cola desde la que vamos a consumir
-        const queueName = 'cola_analisis';
+        const queueName = 'cola';
         await channel.assertQueue(queueName);
 
         console.log(`Esperando mensajes en la cola ${queueName}...`);
