@@ -1,13 +1,13 @@
 import * as amqp from 'amqplib';
-import fetch from 'isomorphic-fetch'; // Importamos isomorphic-fetch en lugar de node-fetch
+import fetch from 'isomorphic-fetch';
 
 async function connect() {
     try {
-        const connection = await amqp.connect('amqp://3.216.68.220');
+        const connection = await amqp.connect('amqp://34.200.119.111');
         const channel = await connection.createChannel();
 
         // Declaramos la cola desde la que vamos a consumir
-        const queueName = 'cola';
+        const queueName = 'data';
         await channel.assertQueue(queueName);
 
         console.log(`Esperando mensajes en la cola ${queueName}...`);
@@ -20,7 +20,7 @@ async function connect() {
                     console.log("Mensaje recibido:", msg.content.toString());
 
                     // Enviar el mensaje a una ruta específica
-                    await enviarMensaje('http://localhost:4000/api/analisis', msg.content.toString());
+                    await enviarMensaje('http://localhost:3000/app/data', msg.content.toString());
 
                     // Confirmar que hemos procesado el mensaje
                     channel.ack(msg);
@@ -42,7 +42,7 @@ async function enviarMensaje(url: string, mensaje: string) {
         'Content-Type': 'application/json'
     };
 
-    const body = JSON.stringify({ mensaje });
+    const body = mensaje ;
 
     const options: { method: string, headers: any, body: string } = {
         method: 'POST',
