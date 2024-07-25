@@ -20,7 +20,7 @@ async function connect() {
                     console.log("Mensaje recibido:", msg.content.toString());
 
                     // Enviar el mensaje a una ruta específica
-                    await enviarMensaje('http://localhost:3000/app/data', msg.content.toString());
+                    await enviarMensaje('https://hydrosense-info.integrador.xyz:3000/app/data', msg.content.toString());
 
                     // Confirmar que hemos procesado el mensaje
                     channel.ack(msg);
